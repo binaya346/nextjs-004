@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { authAPI } from '@/lib/api';
+import { authAPI } from '../../lib/api';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -87,6 +87,7 @@ export default function RegisterForm() {
     // Handle form submit
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // We are clearing api error before making api call so that previous api error is removed. 
         setApiError('');
 
         // Validate form
@@ -281,8 +282,8 @@ export default function RegisterForm() {
                             type="submit"
                             disabled={loading}
                             className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white ${loading
-                                    ? 'bg-blue-400 cursor-not-allowed'
-                                    : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+                                ? 'bg-blue-400 cursor-not-allowed'
+                                : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
                                 }`}
                         >
                             {loading ? (

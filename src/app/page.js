@@ -1,7 +1,3 @@
-import Headers from "@/components/layouts/headers";
-import { NavigationMenuDemo } from "@/components/partials/navigation-menu.jsx"
-
-
 export default function Home() {
   return (
     <>
