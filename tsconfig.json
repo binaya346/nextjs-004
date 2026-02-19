@@ -30,7 +30,7 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/app/signin/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]

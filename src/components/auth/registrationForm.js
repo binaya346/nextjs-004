@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { authAPI } from '../../lib/api';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { toast } from "sonner"
 
 export default function RegisterForm() {
     const router = useRouter();
@@ -47,16 +48,26 @@ export default function RegisterForm() {
             newErrors.username = 'Username is required';
         } else if (formData.username.length < 3) {
             newErrors.username = 'Username must be at least 3 characters';
+        } else if (formData.username.length > 20) {
+            newErrors.username = 'Username must be less than 20 characters';
         }
 
         // First name validation
         if (!formData.firstname.trim()) {
             newErrors.firstname = 'First name is required';
+        }  else if (formData.firstname.length < 2) {
+            newErrors.firstname = 'First name must be at least 2 characters';
+        } else if (formData.firstname.length > 30) {
+            newErrors.firstname = 'First name must be less than 30 characters';
         }
 
         // Last name validation
         if (!formData.lastname.trim()) {
             newErrors.lastname = 'Last name is required';
+        } else if (formData.lastname.length < 2) {
+            newErrors.lastname = 'Last name must be at least 2 characters';
+        } else if (formData.lastname.length > 30) {
+            newErrors.lastname = 'Last name must be less than 30 characters';
         }
 
         // Email validation
@@ -69,8 +80,8 @@ export default function RegisterForm() {
         // Password validation
         if (!formData.password) {
             newErrors.password = 'Password is required';
-        } else if (formData.password.length < 6) {
-            newErrors.password = 'Password must be at least 6 characters';
+        } else if (formData.password.length < 8) {
+            newErrors.password = 'Password must be at least 8 characters';
         }
 
         // Confirm password validation
@@ -111,10 +122,11 @@ export default function RegisterForm() {
             }
 
             // Show success message
-            alert('Registration successful! Redirecting to dashboard...');
+            // toast.success('Registration successful! You can now sign in.');
+            alert('Registration successful! You can now sign in.');
 
             // Redirect to dashboard or home
-            router.push('/dashboard');
+            router.push('/signin');
 
         } catch (error) {
             setApiError(error.message || 'Registration failed. Please try again.');
